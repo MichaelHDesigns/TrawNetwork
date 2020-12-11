@@ -455,7 +455,7 @@ const int SCRYPT_SCRATCHPAD_SIZE = 131072 + 63;
 
 
         assert(hashGenesisBlock == uint256("0x00000435ea49261ec7da927960edd6389033f7f996fc534c856d4f9ad255cbf2"));
-        assert(genesis.hashMerkleRoot == uint256("0x44058c0881af4e47b6386dd78ee689359a8da3e06943232edb747dab7f4d38e1"));
+        assert(genesis.hashMerkleRoot == uint256("0x14b06ba38cc63d7bc54830d8a0c4c4676ded336e2e03358bebb56f0c99956275"));
 
 	/*	vSeeds.push_back(CDNSSeedData("Seed node", "192.64.116.65"));     // Seed node
 		vSeeds.push_back(CDNSSeedData("Seed node", "63.209.35.28"));  */   // Seed node
