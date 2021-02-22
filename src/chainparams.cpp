@@ -369,18 +369,18 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0x21;
-        pchMessageStart[1] = 0xa7;
-        pchMessageStart[2] = 0x7e;
-        pchMessageStart[3] = 0x37;
-        vAlertPubKey = ParseHex("04ffff001d01042f446576696c6b696e6736313035207361797320746f20656e6a6f7920796f7572206461792044656320372032303230");
-        nDefaultPort = 289501;
+        pchMessageStart[0] = 0x61;
+        pchMessageStart[1] = 0xa5;
+        pchMessageStart[2] = 0x6e;
+        pchMessageStart[3] = 0x75;
+        vAlertPubKey = ParseHex("046c137397eca64996c2e75b46f00c26907ac6efd7dad2b1a48e50d0545145d0a635ba49ec4bd2a357fbfce1deb0731aa307b13c73c91ca746ccf555af34882b97");
+        nDefaultPort = 16105;
         bnProofOfWorkLimit = ~uint256(0) >> 15; // Traw starting difficulty is 1 / 2^12
         nSubsidyHalvingInterval = 210000;
         nMaxReorganizationDepth = 100;
-        nEnforceBlockUpgradeMajority = 100;
-        nRejectBlockOutdatedMajority = 150;
-        nToCheckBlockUpgradeMajority = 200;
+        nEnforceBlockUpgradeMajority = 750;
+        nRejectBlockOutdatedMajority = 950;
+        nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; // TRAW: 1 day
         nTargetSpacing = 1 * 60;  // TRAW: 60 seconds
@@ -388,7 +388,7 @@ public:
         nMaturity = 50;
         nMasternodeCountDrift = 20;
         nModifierUpdateBlock = 615800;
-        nMaxMoneyOut = 225000000 * COIN;
+        nMaxMoneyOut = 40000000 * COIN;
 
         /**
          * Build the genesis block. Note that the output of the genesis coinbase cannot
@@ -400,20 +400,20 @@ public:
          *     CTxOut(nValue=50.00000000, scriptPubKey=0xA9037BAC7050C479B121CF)
          *   vMerkleTree: e0028e
          */
-        const char* pszTimestamp = "Devilking6105 says to enjoy your day Dec 7 2020";
+        const char* pszTimestamp = "Traw Masternode - 2018";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
         txNew.vout[0].nValue = 250 * COIN;
-        txNew.vout[0].scriptPubKey = CScript() << ParseHex("04678afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
+        txNew.vout[0].scriptPubKey = CScript() << ParseHex("04c10e83b2703ccf322f7dbd62dd5855ac7c10bd055814ce121ba32607d573b8810c02c0582aed05b4deb9c4b77b26d92428c61256cd42774babea0a073b2ed0c9") << OP_CHECKSIG;
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock = 0;
         genesis.hashMerkleRoot = genesis.BuildMerkleTree();
         genesis.nVersion = 1;
-        genesis.nTime = 1607398331;
+        genesis.nTime = 1510930266;
         genesis.nBits = 0x1e0ffff0;
-        genesis.nNonce = 51316;
+        genesis.nNonce = 1757661;
 
         hashGenesisBlock = genesis.GetHash();
 
@@ -454,14 +454,14 @@ const int SCRYPT_SCRATCHPAD_SIZE = 131072 + 63;
 
 
 
-        assert(hashGenesisBlock == uint256("0x00000435ea49261ec7da927960edd6389033f7f996fc534c856d4f9ad255cbf2"));
-        assert(genesis.hashMerkleRoot == uint256("0x14b06ba38cc63d7bc54830d8a0c4c4676ded336e2e03358bebb56f0c99956275"));
+        assert(hashGenesisBlock == uint256("0xb3d3557a22a4d6afe1cfc82fd5c3a0bdaae2cc2bce3a4160c5f2f64210b08b6e"));
+        assert(genesis.hashMerkleRoot == uint256("0xe53de9b8e58529e77bdc058a1600ecb746e3769a2fcb07935d2b001bff236b32"));
 
-	/*	vSeeds.push_back(CDNSSeedData("Seed node", "192.64.116.65"));     // Seed node
-		vSeeds.push_back(CDNSSeedData("Seed node", "63.209.35.28"));  */   // Seed node
+	//	vSeeds.push_back(CDNSSeedData("Seed node", "192.64.116.65"));     // Seed node
+	//	vSeeds.push_back(CDNSSeedData("Seed node", "63.209.35.28"));     // Seed node
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 63);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 125);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 40);
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 28);
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 212);
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x02)(0x2D)(0x25)(0x33).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x02)(0x21)(0x31)(0x2B).convert_to_container<std::vector<unsigned char> >();
@@ -505,23 +505,23 @@ public:
     {
         networkID = CBaseChainParams::TESTNET;
         strNetworkID = "test";
-        pchMessageStart[0] = 0x75;
-        pchMessageStart[1] = 0x7a;
-        pchMessageStart[2] = 0x65;
+        pchMessageStart[0] = 0x16;
+        pchMessageStart[1] = 0x5a;
+        pchMessageStart[2] = 0x56;
         pchMessageStart[3] = 0xb8;
         vAlertPubKey = ParseHex("04b10387d7a464d983331aace5074ac6dbd05af4a10425c4665c536905c9bf6594e605e2e12285329b8d1845188aea2953bd6c74471cd6f3abbeea9d1f15ee1776");
-        nDefaultPort = 52474;
+        nDefaultPort = 26105;
         nEnforceBlockUpgradeMajority = 51;
         nRejectBlockOutdatedMajority = 75;
         nToCheckBlockUpgradeMajority = 100;
         nMinerThreads = 0;
         nTargetTimespan = 1 * 60; // TRAW: 1 day
         nTargetSpacing = 1 * 60;  // TRAW: 1 minute
-        nLastPOWBlock = 200;
+        nLastPOWBlock = 20000000;
         nMaturity = 15;
         nMasternodeCountDrift = 4;
         nModifierUpdateBlock = 51197; //approx Mon, 17 Apr 2017 04:00:00 GMT
-        nMaxMoneyOut = 43199500 * COIN;
+        nMaxMoneyOut = 40000000 * COIN;
 
         //! Modify the testnet genesis block so the timestamp is valid for a later start.
         genesis.nTime = 1454124731;
@@ -532,13 +532,13 @@ public:
 
         vFixedSeeds.clear();
         vSeeds.clear();
-        vSeeds.push_back(CDNSSeedData("Node1", "63.209.35.28"));
+        //vSeeds.push_back(CDNSSeedData("Node1", "63.209.35.28"));
         //vSeeds.push_back(CDNSSeedData("fuzzbawls.pw", "se-testnet.seed2.fuzzbawls.pw"));
         //vSeeds.push_back(CDNSSeedData("s3v3nh4cks.ddns.net", "s3v3nh4cks.ddnst"));
         //vSeeds.push_back(CDNSSeedData("88.198.192.110", "88.198.192.110"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 65); // Testnet skx addresses start with 'x' or 'y'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 125);  // Testnet skx script addresses start with '8' or '9'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 100); // Testnet skx addresses start with 'x' or 'y'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 88);  // Testnet skx script addresses start with '8' or '9'
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 239);     // Testnet private keys start with '9' or 'c' (Bitcoin defaults)
         // Testnet skx BIP32 pubkeys start with 'DRKV'
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x3a)(0x80)(0x61)(0xa0).convert_to_container<std::vector<unsigned char> >();
